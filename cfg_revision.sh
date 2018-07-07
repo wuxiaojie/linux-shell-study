@@ -104,3 +104,21 @@ then
   do
     for file in $(/bin/ls "$dir"| grep -v total | cut -f2 -d' ')
     do
+       OLD_IFS="$IFS"
+       IFS=","
+       file_update "${key_array[*]}" "${dir}/${file}"
+       IFS="$OLD_IFS"
+    done
+  done
+fi
+
+if [ -n "${file_array[0]}" ]
+then
+   for file in ${file_array[*]}
+   do
+       OLD_IFS="$IFS"
+       IFS=","
+       file_update "${key_array[*]}" ${file}
+       IFS="$OLD_IFS"
+   done
+fi
